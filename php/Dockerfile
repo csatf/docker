@@ -15,6 +15,7 @@ RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr
 RUN docker-php-ext-install \
   bcmath \
   gd \
+  pcntl \
   pdo_pgsql \
   opcache \
   zip

@@ -8,8 +8,6 @@ ENV QUEUE_CONNECTION=redis
 ENV QUEUE_NAME=default
 ENV LARAVEL_HORIZON=true
 
-RUN docker-php-ext-install pcntl
-
 # Install supervisor
 RUN apk update && apk add -u python=$PYTHON_VERSION py-pip=$PY_PIP_VERSION
 RUN pip install supervisor==$SUPERVISOR_VERSION
