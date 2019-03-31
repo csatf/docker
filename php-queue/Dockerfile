@@ -1,16 +1,12 @@
 FROM benbjurstrom/php:latest
 
-ENV PYTHON_VERSION=2.7.15-r1
-ENV PY_PIP_VERSION=10.0.1-r0
-ENV SUPERVISOR_VERSION=3.3.3
-
 ENV QUEUE_CONNECTION=redis
 ENV QUEUE_NAME=default
 ENV LARAVEL_HORIZON=true
 
 # Install supervisor
-RUN apk update && apk add -u python=$PYTHON_VERSION py-pip=$PY_PIP_VERSION
-RUN pip install supervisor==$SUPERVISOR_VERSION
+RUN apk update && apk add -u python py-pip
+RUN pip install supervisor
 
 # Define working directory
 WORKDIR /etc/supervisor/conf.d
