@@ -1,4 +1,4 @@
-FROM local-php:latest
+FROM benbjurstrom/php:latest
 
 ENV PYTHON_VERSION=2.7.15-r1
 ENV PY_PIP_VERSION=10.0.1-r0
