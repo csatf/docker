@@ -7,4 +7,4 @@ From benbjurstrom/php with:
   - Laravel Queue Worker
   - Laravel Websockets
 
-Set $APP_TYPE to one phpfpm, horizon, queue, websocket, or job.
+Set $APP_MODE to one phpfpm, horizon, queue, websocket, or job.
