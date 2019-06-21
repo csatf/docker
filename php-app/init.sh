@@ -8,7 +8,16 @@ set -e -x -u
 ##
 # Configure supervisor to run php-fpm
 #
-if [ "$APP_MODE" = "phpfpm" ]; then
+if [ "$APP_MODE" = "api" ]; then
+	cp /etc/supervisor/conf.d/laravel-phpfpm.conf.tpl /etc/supervisor/supervisord.conf
+
+	supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf
+fi
+
+##
+# Configure supervisor to run php-fpm
+#
+if [ "$APP_MODE" = "admin" ]; then
 	cp /etc/supervisor/conf.d/laravel-phpfpm.conf.tpl /etc/supervisor/supervisord.conf
 
 	supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf
@@ -52,5 +61,5 @@ if [ "$APP_MODE" = "job" ]; then
 	 tail -f /dev/null
 fi
 
-echo "Variable APP_MODE must be one of phpfpm, horizon, queue, websocket, or job"
+echo "Variable APP_MODE must be one of api, admin, horizon, queue, websocket, or job"
 exit 1
