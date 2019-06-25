@@ -47,7 +47,8 @@ fi
 # Configure supervisor to run laravel websockets
 #
 if [ "$APP_MODE" = "websocket" ]; then
-	 cp /etc/supervisor/conf.d/laravel-websocket.conf.tpl /etc/supervisor/supervisord.conf
+	sed -e "s~%%PUSHER_APP_PORT%%~$PUSHER_APP_PORT~" \
+		/etc/supervisor/conf.d/laravel-websocket.conf.tpl > /etc/supervisor/supervisord.conf
 
 	 supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf
 fi
