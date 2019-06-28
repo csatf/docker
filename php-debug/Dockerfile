@@ -1,4 +1,4 @@
-FROM benbjurstrom/php:latest
+FROM benbjurstrom/php-app:latest
 
 RUN apk --update --no-cache add autoconf g++ make && \
     pecl install -f xdebug && \
