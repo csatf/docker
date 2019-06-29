@@ -1,15 +1,16 @@
 ###
 # Based on https://github.com/ambientum/ambientum/blob/master/php/7.3/Dockerfile
+# with some unused features removed
 #
 FROM alpine:3.9
 
 # Repository/Image Maintainer
-LABEL maintainer="Diego Hernandes <iamhernandev@gmail.com>"
+LABEL maintainer="Ben Bjurstrom <bbjurstrom@gmail.com>"
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \
     OPCACHE_MODE="normal" \
-    PHP_MEMORY_LIMIT=256M \
+    PHP_MEMORY_LIMIT=512M \
     XDEBUG_ENABLED=false \
     NR_ENABLED=false \
     NR_APP_NAME="" \
@@ -33,50 +34,30 @@ RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update \
     curl \
     bash \
-    fontconfig \
-    libxrender \
-    libxext \
-    imagemagick \
-    nano \
     vim \
     git \
     unzip \
-    wget \
-    make \
     sudo && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
     php \
-    php-apcu \
     php-bcmath \
-    php-bz2 \
-    php-calendar \
     php-curl \
-    php-ctype \
     php-exif \
     php-fpm \
     php-gd \
-    php-gmp \
     php-iconv \
     php-imagick \
-    php-imap \
     php-intl \
     php-json \
     php-mbstring \
-    php-mysqli \
-    php-mysqlnd \
-    php-pdo_mysql \
     php-memcached \
-    php-mongodb \
     php-opcache \
     php-pdo_pgsql \
     php-pgsql \
     php-posix \
     php-redis \
-    php-soap \
     php-sodium \
-    php-sqlite3 \
-    php-pdo_sqlite \
     php-xdebug \
     php-xml \
     php-xmlreader \
@@ -86,18 +67,21 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php-zip \
     php-zlib \
     php-pcntl \
-    php-cgi \
     php-phpdbg && \
     sudo ln -s /usr/bin/php7 /usr/bin/php && \
     sudo ln -s /usr/bin/php-cgi7 /usr/bin/php-cgi && \
     sudo ln -s /usr/sbin/php-fpm7 /usr/sbin/php-fpm && \
     echo "---> Installing Composer" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    echo "---> Installing Phpunit" && \
+    wget https://phar.phpunit.de/phpunit-8.2.phar && \
+    chmod +x phpunit-8.2.phar && \
+    mv phpunit-8.2.phar /usr/local/bin/phpunit && \
     echo "---> Cleaning up" && \
     rm -rf /tmp/* && \
     echo "---> Adding the ambientum user" && \
     adduser -D -u 1000 ambientum && \
-    mkdir -p /var/www/app && \
+    mkdir -p /var/www && \
     chown -R ambientum:ambientum /var/www && \
     wget -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini-static && \
     chmod +x /tini && \
@@ -137,7 +121,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
 USER ambientum
 
 # Application directory
-WORKDIR "/var/www/app"
+WORKDIR "/var/www"
 
 # Environment variables
 ENV PATH=/home/ambientum/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
