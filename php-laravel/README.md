@@ -1,5 +1,5 @@
 # benbjurstrom/php-laravel
-From ambientum/php:7.3 setup to run a laravel app in the following ways:
+From benbjurstrom/php-ambientum setup to run a laravel app in the following ways:
 - Phpfpm
 - Laravel Jobs heartbeat
 - Laravel Horizon

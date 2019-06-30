@@ -44,6 +44,7 @@ fi
 # Configure a cron job to a run laravel jobs heartbeat every minute
 #
 if [ "$APP_MODE" = "job" ]; then
+	 sudo su
 	 crond
 	 echo '*  *  *  *  * php /var/www/artisan schedule:run >> /dev/null 2>&1' > /etc/crontabs/root
 	 tail -f /dev/null
