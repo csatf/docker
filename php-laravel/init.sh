@@ -44,8 +44,8 @@ fi
 # Configure a cron job to a run laravel jobs heartbeat every minute
 #
 if [ "$APP_MODE" = "job" ]; then
-	 echo '*  *  *  *  * php /var/www/artisan schedule:run >> /dev/null 2>&1' | sudo tee -a /etc/crontabs/ambientum
- 	 crond -f
+	 echo '*  *  *  *  * php /var/www/artisan schedule:run' | sudo tee -a /etc/crontabs/root
+ 	 sudo crond -f
 fi
 
 echo "Variable APP_MODE must be one of api, admin, horizon, queue, websocket, or job"
