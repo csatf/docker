@@ -40,13 +40,5 @@ if [ "$APP_MODE" = "websocket" ]; then
 	 php /var/www/artisan websockets:serve
 fi
 
-##
-# Configure a cron job to a run laravel jobs heartbeat every minute
-#
-if [ "$APP_MODE" = "job" ]; then
-	 echo '*  *  *  *  * php /var/www/artisan schedule:run' | sudo tee -a /etc/crontabs/root
- 	 sudo crond -f
-fi
-
-echo "Variable APP_MODE must be one of api, admin, horizon, queue, websocket, or job"
+echo "Variable APP_MODE must be one of api, admin, horizon, queue, or websocket"
 exit 1
