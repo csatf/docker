@@ -38,6 +38,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     git \
     qpdf \
     unzip \
+    yarn \
     sudo && \
     echo "---> Preparing and Installing PHP" && \
     apk add --update \
