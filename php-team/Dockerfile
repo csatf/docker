@@ -5,7 +5,7 @@
 FROM alpine:3.8
 
 # Repository/Image Maintainer
-LABEL maintainer="Ben Bjurstrom <bbjurstrom@gmail.com>"
+LABEL maintainer="Ben Bjurstrom <bbjurstrom@csatf.org>"
 
 # Variables for enabling NewRelic
 ENV FRAMEWORK=laravel \

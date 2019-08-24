@@ -1,4 +1,4 @@
-FROM benbjurstrom/php-ambientum:latest
+FROM csatf/php-ambientum:latest
 
 # Copy scripts
 COPY init.sh /scripts/init.sh
