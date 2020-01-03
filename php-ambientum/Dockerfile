@@ -36,6 +36,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     bash \
     vim \
     git \
+    npm \
     yarn \
     unzip \
     sudo && \
